@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'historias.apps.HistoriasConfig',
-    'capitulos.apps.CapitulosConfig',
+    'historia.apps.HistoriaConfig',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'capitular.urls'
+ROOT_URLCONF = 'cap.urls'
 
 TEMPLATES = [
     {
