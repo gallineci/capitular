@@ -4,5 +4,5 @@ from historia.models import Historia
 class FormularioHistoria(ModelForm):
     class Meta:
         model = Historia
-        exclude = []
+        exclude = ['autor']
         

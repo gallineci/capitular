@@ -4,11 +4,12 @@ from .consts import OPCOES_GENEROS, OPCOES_ESTILOS, OPCOES_STATUS
 
 class Historia(models.Model):
     titulo = models.CharField(max_length=200)
-    descricao = models.TextField(blank=True)
+    sinopse = models.TextField(blank=True)
     genero = models.IntegerField(choices=OPCOES_GENEROS)
     estilo = models.IntegerField(choices=OPCOES_ESTILOS, blank=True, null=True)
     status = models.IntegerField(choices=OPCOES_STATUS, default=1)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    foto = models.ImageField(blank=True, null=True, upload_to='historia/fotos')
     criado_em = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

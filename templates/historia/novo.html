@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro de História</title>
+  <style>
+    body {
+      background-color: #f9f5f0;
+      font-family: "Georgia", serif;
+      color: #3e3e3e;
+      margin: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    h2 {
+      color: #5a4632;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-family: "Palatino Linotype", serif;
+      letter-spacing: 0.04em;
+      text-transform: capitalize;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    form {
+      background-color: #fff8f0;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
+      border: 1px solid #e1d7c6;
+      width: 100%;
+      max-width: 600px;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: block;
+      margin-top: 1.5rem;
+      font-weight: 600;
+      color: #6b5a43;
+      font-size: 1.1rem;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.65rem 0.8rem;
+      margin-top: 0.4rem;
+      border: 1.5px solid #c4b9a4;
+      border-radius: 8px;
+      font-family: "Georgia", serif;
+      font-size: 1rem;
+      color: #4a3b29;
+      resize: vertical;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #5a4632;
+      outline: none;
+      box-shadow: 0 0 5px rgb(90 70 50 / 0.3);
+    }
+
+    input[type="file"] {
+      margin-top: 0.8rem;
+      font-family: "Georgia", serif;
+      color: #4a3b29;
+    }
+
+    button {
+      margin-top: 2.5rem;
+      width: 100%;
+      padding: 12px;
+      background-color: #5a4632;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: "Palatino Linotype", serif;
+    }
+
+    button:hover {
+      background-color: #7a5c3a;
+    }
+  </style>
+</head>
+<body>
+
+  <form action="{% url 'criar-historias' %}" method="post" enctype="multipart/form-data" novalidate>
+    <h2>Cadastrar Nova História</h2>
+    {% csrf_token %}
+
+    <label for="titulo">Título:</label>
+    {{ form.titulo }}
+
+    <label for="sinopse">Sinopse:</label>
+    {{ form.sinopse }}
+
+    <label for="genero">Gênero:</label>
+    {{ form.genero }}
+
+    <label for="estilo">Estilo:</label>
+    {{ form.estilo }}
+
+    <label for="status">Status:</label>
+    {{ form.status }}
+
+    <label for="foto">Foto:</label>
+    {{ form.foto }}
+
+    <button type="submit">Cadastrar História</button>
+
+    {% if form.errors %}
+  <div style="color: red; margin-top: 20px;">
+    <strong>Erros encontrados:</strong>
+    <ul>
+      {% for field, error_list in form.errors.items %}
+        <li><strong>{{ field|title }}:</strong> {{ error_list|join:", " }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+    {% endif %}
+
+  </form>
+
+</body>
+</html>
