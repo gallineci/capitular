@@ -117,7 +117,7 @@
     <label for="status">Status:</label>
     {{ form.status }}
 
-    <label for="foto">Foto:</label>
+    <label>Foto:</label>
     {{ form.foto }}
 
     <button type="submit">Cadastrar História</button>
@@ -135,5 +135,22 @@
 
   </form>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const inputFoto = document.querySelector('input[type="file"][name="foto"]');
+      if (inputFoto) {
+        console.log("Campo de foto carregado:", inputFoto);
+        inputFoto.addEventListener('click', function () {
+          console.log("Campo de foto clicado");
+        });
+        inputFoto.addEventListener('change', function () {
+          console.log("Arquivo selecionado:", inputFoto.files[0]);
+        });
+      } else {
+        console.warn("⚠️ Campo de foto NÃO encontrado.");
+      }
+    });
+  </script>
+  
 </body>
 </html>
