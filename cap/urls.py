@@ -9,6 +9,7 @@ urlpatterns = [
     path('', Login.as_view(), name='login'),  # <- ESSA LINHA É ESSENCIAL
     path('logout/', Logout.as_view(), name='logout'),
     path('historia/', include('historia.urls'), name='historia'),
+    path('capitulo/', include('capitulo.urls'), name='capitulo'),
 ]
 
 if settings.DEBUG:

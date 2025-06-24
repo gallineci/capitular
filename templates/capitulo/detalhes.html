@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ object.titulo }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v6.4.2/css/all.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f9f5f0;
+      font-family: "Georgia", serif;
+      color: #3e3e3e;
+      margin: 40px 20px;
+    }
+
+    .capitulo-container {
+      background: #fff8f0;
+      border: 1px solid #e1d7c6;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .acoes {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .acoes a {
+      margin-left: 10px;
+      font-size: 1.3rem;
+      color: #5a4632;
+    }
+
+    .acoes a:hover {
+      color: #8c3a2f;
+    }
+
+    .titulo-historia {
+      font-family: "Palatino Linotype", serif;
+      font-size: 1.5rem;
+      color: #4e3d2e;
+      margin-bottom: 0.5rem;
+    }
+
+    .titulo-capitulo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #5a4632;
+      margin-bottom: 1rem;
+    }
+
+    .notas-autor {
+      font-style: italic;
+      color: #6e5c48;
+      margin-bottom: 2rem;
+      white-space: pre-line;
+    }
+
+    .conteudo-capitulo {
+      white-space: pre-line;
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="capitulo-container">
+
+    <div class="acoes">
+      <a href="{% url 'editar-capitulo' object.id %}" title="Editar Capítulo"><i class="fas fa-edit"></i></a>
+      <a href="{% url 'deletar-capitulo' object.id %}" title="Excluir Capítulo"><i class="fas fa-trash-alt"></i></a>
+    </div>
+
+    <div class="titulo-historia">
+      História: {{ object.historia.titulo }}
+    </div>
+
+    <div class="titulo-capitulo">
+      {{ object.titulo }}
+    </div>
+
+    {% if object.descricao %}
+      <div class="notas-autor">
+        <strong>Notas do autor:</strong><br>
+        {{ object.descricao }}
+      </div>
+    {% endif %}
+
+    <div class="conteudo-capitulo">
+      {{ object.conteudo }}
+    </div>
+
+  </div>
+
+</body>
+</html>

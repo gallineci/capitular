@@ -88,8 +88,27 @@
 
     <div class="capitulos-placeholder">
       <h3>Capítulos</h3>
-      <p>Capítulos desta história serão exibidos aqui futuramente.</p>
+      {% if object.capitulos.all %}
+        <ul class="list-group">
+          {% for capitulo in object.capitulos.all %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <strong>{{ capitulo.titulo }}</strong><br>
+                <small class="text-muted">{{ capitulo.criado_em|date:"d M Y" }}</small>
+              </div>
+              <a href="{% url 'ver-capitulo' capitulo.id %}" class="btn btn-outline-secondary btn-sm">Ler</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>Esta história ainda não possui capítulos cadastrados.</p>
+      {% endif %}
     </div>
+    <div style="margin-top: 20px; text-align: right;">
+      <a href="{% url 'criar-capitulo' object.id %}" class="btn btn-success btn-sm">
+        <i class="fas fa-plus"></i> Novo Capítulo
+      </a>
+    </div>        
   </div>
 
 </body>
