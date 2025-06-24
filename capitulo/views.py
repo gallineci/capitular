@@ -29,7 +29,7 @@ class CriarCapitulo(LoginRequiredMixin, CreateView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('ver-historia', kwargs={'pk': self.historia.id})
+        return reverse_lazy('detalhes-historia', kwargs={'pk': self.historia.id})
 
 
 class DetalhesCapitulo(LoginRequiredMixin, DetailView):

@@ -96,33 +96,34 @@
 </head>
 <body>
 
-  <form action="{% url 'criar-capitulo' historia_id %}" method="post" enctype="multipart/form-data" novalidate>
-    <h2>Novo Capítulo</h2>
-    {% csrf_token %}
+<form action="{% url 'criar-capitulo' historia_id %}" method="post" novalidate>
+  <h2>Novo Capítulo</h2>
+  {% csrf_token %}
 
-    <label for="titulo">Título do Capítulo:</label>
-    {{ form.titulo }}
+  <label for="titulo">Título do Capítulo:</label>
+  {{ form.titulo }}
 
-    <label for="notas_autor">Notas do Autor:</label>
-    {{ form.notas_autor }}
+  <label for="descricao">Notas do Autor:</label>
+  {{ form.descricao }}
 
-    <label for="arquivo_capitulo">Arquivo do Capítulo (digitalizado):</label>
-    {{ form.arquivo_capitulo }}
+  <label for="conteudo">Conteúdo do Capítulo:</label>
+  {{ form.conteudo }}
 
-    <button type="submit">Salvar Capítulo</button>
+  <button type="submit">Salvar Capítulo</button>
 
-    {% if form.errors %}
-      <div style="color: red; margin-top: 20px;">
-        <strong>Erros encontrados:</strong>
-        <ul>
-          {% for field, error_list in form.errors.items %}
-            <li><strong>{{ field|title }}:</strong> {{ error_list|join:", " }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
+  {% if form.errors %}
+    <div style="color: red; margin-top: 20px;">
+      <strong>Erros encontrados:</strong>
+      <ul>
+        {% for field, error_list in form.errors.items %}
+          <li><strong>{{ field|title }}:</strong> {{ error_list|join:", " }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</form>
 
-  </form>
+
 
 </body>
 </html>
