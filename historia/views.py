@@ -1,6 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views.generic import View
 from django.http import FileResponse, Http404
 from django.core.exceptions import ObjectDoesNotExist
@@ -23,15 +22,16 @@ class CriarHistorias(LoginRequiredMixin, CreateView):
         form.instance.autor = self.request.user
         return super().form_valid(form)
     
-    def post(self, request, *args, **kwargs):
-        print(">>> Chegou no POST")
-        return super().post(request, *args, **kwargs)
+class EditarHistoria (LoginRequiredMixin, UpdateView):
+    model = Historia
+    form_class = FormularioHistoria
+    template_name = 'historia/editar.html'
+    success_url = reverse_lazy('listar-historias')
 
-    def form_valid(self, form):
-        print(">> form_valid foi chamado")
-        print("Foto:", form.cleaned_data.get("foto"))
-        form.instance.autor = self.request.user
-        return super().form_valid(form)
+class DeletarHistoria (LoginRequiredMixin, DeleteView):
+    model = Historia
+    template_name = 'historia/deletar.html'
+    success_url = reverse_lazy('listar-historias')
 
 class FotoHistoria (View):
     def get (self, request, arquivo):

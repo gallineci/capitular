@@ -184,8 +184,8 @@
         </div>
 
         <div class="btn-group">
-          <a href="{{ historia.id }}" class="btn btn-outline-primary">Editar</a>
-          <a href="deletar/{{ historia.id }}" class="btn btn-danger">Excluir</a>
+          <a href="{% url 'editar-historia' historia.id %}" class="btn btn-outline-primary">Editar</a>
+          <a href="{% url 'deletar-historia' historia.id %}" class="btn btn-danger">Excluir</a>
         </div>
       </div>
     {% empty %}
