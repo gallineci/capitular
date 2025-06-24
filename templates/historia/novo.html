@@ -23,7 +23,7 @@
       font-family: "Palatino Linotype", serif;
       letter-spacing: 0.04em;
       text-transform: capitalize;
-      width: 100%;
+      width: 800%;
       max-width: 600px;
     }
 
@@ -34,7 +34,7 @@
       box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
       border: 1px solid #e1d7c6;
       width: 100%;
-      max-width: 600px;
+      max-width: 800px;
       box-sizing: border-box;
     }
 
@@ -99,7 +99,7 @@
 <body>
 
   <form action="{% url 'criar-historias' %}" method="post" enctype="multipart/form-data" novalidate>
-    <h2>Cadastrar Nova História</h2>
+    <h2>Nova História</h2>
     {% csrf_token %}
 
     <label for="titulo">Título:</label>
@@ -120,7 +120,7 @@
     <label>Foto:</label>
     {{ form.foto }}
 
-    <button type="submit">Cadastrar História</button>
+    <button type="submit">Salvar História</button>
 
     {% if form.errors %}
   <div style="color: red; margin-top: 20px;">
@@ -147,7 +147,7 @@
           console.log("Arquivo selecionado:", inputFoto.files[0]);
         });
       } else {
-        console.warn("⚠️ Campo de foto NÃO encontrado.");
+        console.warn("Campo de foto não encontrado.");
       }
     });
   </script>

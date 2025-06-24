@@ -91,9 +91,6 @@
       <strong>Gênero:</strong> {{ object.get_genero_display }}<br>
       <strong>Estilo:</strong> {{ object.get_estilo_display }}<br>
       <strong>Status:</strong> {{ object.get_status_display }}<br>
-      {% if object.foto %}
-        <strong>Foto:</strong> <a href="{{ object.foto.url }}" target="_blank">Visualizar</a>
-      {% endif %}
     </div>
 
     <form method="post" action="">

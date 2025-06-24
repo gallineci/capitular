@@ -76,32 +76,36 @@
         <i class="fas fa-arrow-left"></i> Voltar para a história
       </a>
     </div> 
-
+  
     <div class="acoes">
       <a href="{% url 'editar-capitulo' object.id %}" title="Editar"><i class="fas fa-edit"></i></a>
       <a href="{% url 'deletar-capitulo' object.id %}" title="Excluir"><i class="fas fa-trash-alt"></i></a>
     </div>    
-
+  
     <div class="titulo-historia">
-      História: {{ object.historia.titulo }}
+      {{ object.historia.titulo }}
     </div>
-
-    <div class="titulo-capitulo">
-      {{ object.titulo }}
-    </div>
-
+  
     {% if object.descricao %}
       <div class="notas-autor">
         <strong>Notas do autor:</strong><br>
         {{ object.descricao }}
       </div>
+  
+      <!-- Linha discreta -->
+      <hr style="border-top: 1px solid #d9cbb8; margin: 1rem 0;" />
     {% endif %}
-
+  
+    <div class="titulo-capitulo">
+      {{ object.titulo }}
+    </div>
+  
     <div class="conteudo-capitulo">
       {{ object.conteudo }}
     </div>
-
+  
   </div>
+  
 
 </body>
 </html>

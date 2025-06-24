@@ -13,7 +13,7 @@
       display: flex;
       justify-content: center;
     }
-
+  
     h2 {
       color: #5a4632;
       font-weight: 700;
@@ -24,9 +24,9 @@
       letter-spacing: 0.04em;
       text-transform: capitalize;
       width: 100%;
-      max-width: 600px;
+      max-width: 800px; /* aumentada */
     }
-
+  
     form {
       background-color: #fff8f0;
       padding: 2rem 2.5rem;
@@ -34,10 +34,10 @@
       box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
       border: 1px solid #e1d7c6;
       width: 100%;
-      max-width: 600px;
+      max-width: 800px; /* aumentada */
       box-sizing: border-box;
     }
-
+  
     label {
       display: block;
       margin-top: 1.5rem;
@@ -45,7 +45,7 @@
       color: #6b5a43;
       font-size: 1.1rem;
     }
-
+  
     input[type="text"],
     textarea {
       width: 100%;
@@ -60,20 +60,30 @@
       box-sizing: border-box;
       transition: border-color 0.3s ease;
     }
-
+  
     input[type="text"]:focus,
     textarea:focus {
       border-color: #5a4632;
       outline: none;
       box-shadow: 0 0 5px rgb(90 70 50 / 0.3);
     }
-
+  
     input[type="file"] {
       margin-top: 0.8rem;
       font-family: "Georgia", serif;
       color: #4a3b29;
     }
-
+  
+    /* ⬇ Especificamente para o campo de descrição */
+    textarea[name="descricao"] {
+      height: 80px; /* menor */
+    }
+  
+    /* ⬇ Especificamente para o campo de conteúdo */
+    textarea[name="conteudo"] {
+      height: 300px; /* maior */
+    }
+  
     button {
       margin-top: 2.5rem;
       width: 100%;
@@ -88,16 +98,17 @@
       transition: background-color 0.3s ease;
       font-family: "Palatino Linotype", serif;
     }
-
+  
     button:hover {
       background-color: #7a5c3a;
     }
   </style>
+  
 </head>
 <body>
 
 <form method="post" enctype="multipart/form-data" novalidate>
-  <h2>Novo Capítulo</h2>
+  <h2>Editar Capítulo</h2>
   {% csrf_token %}
 
   <label for="titulo">Título do Capítulo:</label>
