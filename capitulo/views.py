@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from .models import Capitulo
 from .forms import FormularioCapitulo
@@ -25,7 +25,7 @@ class CriarCapitulo(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['historia_id'] = self.historia.id  # usado em novo.html
+        context['historia_id'] = self.historia.id
         return context
 
     def get_success_url(self):
@@ -35,3 +35,29 @@ class CriarCapitulo(LoginRequiredMixin, CreateView):
 class DetalhesCapitulo(LoginRequiredMixin, DetailView):
     model = Capitulo
     template_name = 'capitulo/detalhes.html'
+
+class EditarCapitulo(LoginRequiredMixin, UpdateView):
+    model = Capitulo
+    form_class = FormularioCapitulo
+    template_name = 'capitulo/editar.html'
+
+    def get_queryset(self):
+        return Capitulo.objects.filter(historia__autor=self.request.user)
+    
+    def form_valid(self, form):
+       # Garante que o campo historia não seja alterado
+       form.instance.historia = self.object.historia
+       return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('ver-capitulo', kwargs={'pk': self.object.pk})
+
+class DeletarCapitulo(LoginRequiredMixin, DeleteView):
+    model = Capitulo
+    template_name = 'capitulo/deletar.html'
+
+    def get_queryset(self):
+        return Capitulo.objects.filter(historia__autor=self.request.user)
+
+    def get_success_url(self):
+        return reverse_lazy('detalhes-historia', kwargs={'pk': self.object.historia.id})

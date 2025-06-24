@@ -67,14 +67,20 @@
     }
   </style>
 </head>
-<body>
+<body> 
 
   <div class="capitulo-container">
 
+    <div style="max-width: 800px; margin: auto;">
+      <a href="{% url 'detalhes-historia' object.historia.id %}" class="btn btn-link" style="text-decoration: none; font-size: 1.1rem; color: #5a4632;">
+        <i class="fas fa-arrow-left"></i> Voltar para a história
+      </a>
+    </div> 
+
     <div class="acoes">
-      <a href="{% url 'editar-capitulo' object.id %}" title="Editar Capítulo"><i class="fas fa-edit"></i></a>
-      <a href="{% url 'deletar-capitulo' object.id %}" title="Excluir Capítulo"><i class="fas fa-trash-alt"></i></a>
-    </div>
+      <a href="{% url 'editar-capitulo' object.id %}" title="Editar"><i class="fas fa-edit"></i></a>
+      <a href="{% url 'deletar-capitulo' object.id %}" title="Excluir"><i class="fas fa-trash-alt"></i></a>
+    </div>    
 
     <div class="titulo-historia">
       História: {{ object.historia.titulo }}

@@ -1,0 +1,103 @@
+<!-- templates/capitulo/deletar.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmar Exclusão do Capítulo</title>
+  <style>
+    body {
+      background-color: #f9f5f0;
+      font-family: "Georgia", serif;
+      color: #3e3e3e;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .confirmation-box {
+      background-color: #fff8f0;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e1d7c6;
+      text-align: center;
+      max-width: 600px;
+      width: 90%;
+    }
+
+    h1 {
+      color: #8c3a2f;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      font-family: "Palatino Linotype", serif;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #5e4b36;
+      margin-bottom: 2rem;
+    }
+
+    .historia-info {
+      background-color: #f3ede5;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: "Georgia", serif;
+      margin: 0 10px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-danger {
+      background-color: #b33a3a;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background-color: #8c2c2c;
+    }
+
+    .btn-secondary {
+      background-color: #6c5a48;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #4e4034;
+    }
+  </style>
+</head>
+<body>
+  <div class="confirmation-box">
+    <h1>Excluir Capítulo</h1>
+
+    <p>Você está prestes a excluir este capítulo. Esta ação não pode ser desfeita.</p>
+
+    <div class="historia-info">
+      <strong>Título do Capítulo:</strong> {{ object.titulo }}<br>
+      <strong>Notas do Autor:</strong> {{ object.notas_autor }}<br>
+      <strong>Data de Criação:</strong> {{ object.criado_em|date:"d/m/Y H:i" }}
+    </div>
+
+    <form method="post" action="">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+      <a href="{% url 'ver-capitulo' object.id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+</body>
+</html>
