@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.views.generic import View
 from django.http import FileResponse, Http404
 from django.core.exceptions import ObjectDoesNotExist
@@ -32,6 +32,11 @@ class DeletarHistoria (LoginRequiredMixin, DeleteView):
     model = Historia
     template_name = 'historia/deletar.html'
     success_url = reverse_lazy('listar-historias')
+
+class DetalhesHistoria(LoginRequiredMixin, DetailView):
+    model = Historia
+    template_name = 'historia/detalhes.html'
+
 
 class FotoHistoria (View):
     def get (self, request, arquivo):
